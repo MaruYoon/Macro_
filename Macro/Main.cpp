@@ -43,11 +43,43 @@ using namespace std;
 
 */
 
+//Singleton
+//타입에 맞게 싱글톤을 만들겠다
+#define DECLARE_SINGLETON(type)          \
+static type** GetInstance()              \
+{                                        \
+    static type* pInstance = new type;   \
+                                         \
+    if (pInstance == NULL)               \
+    pInstance = new type;                \
+                                         \
+    return &pInstance;                   \
+                                         \
+}                                        \
+static void DestroyInstance()            \
+{                                        \
+     type** ppInstance = GetInstance();  \
+                                         \
+if ((*ppInstance) != NULL)               \
+{                                        \
+        delete *ppInstance;              \
+		ppInstance = NULL;               \
+	}                                    \
+                                         \
+                                         \
+}
+
+#define GETSINGLETON(type) (*type::GetInstance())
+#define DESTROYSINGLETON(type) (*type::GetInstance())->DestroyInstance()
+
 
 class Object
 {
-private:
-	string str;
+public:
+	DECLARE_SINGLETON(Object)
+
+public:
+	int Number;
 
 public:
 	void Output()
@@ -76,6 +108,17 @@ inline void Safe_Release(T& _rObj)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 int main(void)
 {
 	/*
@@ -90,7 +133,12 @@ int main(void)
 	pObj->Output();
 	*/
 
+	GETSINGLETON(Object)->Number = 10;
+	GETSINGLETON(Object)->Output();
 
+	cout << GETSINGLETON(Object)->Number << endl;
+
+	DESTROYSINGLETON(Object);
 
 
 
