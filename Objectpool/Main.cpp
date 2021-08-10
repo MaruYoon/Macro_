@@ -18,29 +18,81 @@ struct ObjectPool
 
 
 
-bool check;
-
-
-template <typename T>
-inline void Safe_Delete(T& _Obj)
-{
-	if (_Obj)
-	{
-		delete _Obj;
-		_Obj = NULL;
-	}
-}
-
-#define SAFE_RELEASE(_Obj){Safe_Delete(_Obj);}
-
-
+bool check = false;
+int Count = 0;
 
 
 int main(void)
 {
 	list<ObjectPool*>ObjectPoolList;
 
+	while (true)
+	{
+		system("cls");
+		check = false;
 
+		if (GetAsyncKeyState(VK_RETURN))
+			check = true;
+		//엔터를 누르면 check은 true가 된다.
+
+		if (check)
+		{
+			if (ObjectPoolList.empty())
+			{
+				ObjectPoolList.push_back(
+					new ObjectPool(Count++, 0, false));
+
+				//비어있다면 Key = Count++, Value = 0, check = false 로 동적할당 해
+			}
+
+			else
+			{
+				//ObjectPoolList안에 데이터가 있다면
+				//begin 에서  end까지 아래의 값으로 초기화 해
+				for (list<ObjectPool*>::iterator iter = ObjectPoolList.begin();
+					iter != ObjectPoolList.end(); ++iter)
+				{
+					if (!(*iter)->Active)
+					{
+						(*iter)->Active = true;
+						(*iter)->Value = 0;
+						(*iter)->Key = 0;
+
+						break;
+					}
+				}
+			}
+		}
+
+		//출력
+		for (list<ObjectPool*>::iterator iter = ObjectPoolList.begin();
+			iter != ObjectPoolList.end(); ++iter)
+		{
+			if ((*iter)->Active <= 50)
+			{
+				//Active가 50보다 작거나 같다면 
+
+				(*iter)->Value++;
+				cout << (*iter)->Key << " : " << (*iter)->Value << endl << endl;
+
+				if ((*iter)->Value)
+				{
+					//ObjectPoolList 의 Value
+					(*iter)->Active = false;
+				}
+			}
+		}
+		Sleep(50);
+	}
+
+
+	for (list<ObjectPool*>::iterator iter = ObjectPoolList.begin();
+		iter != ObjectPoolList.end(); ++iter)
+	{
+		delete(*iter);
+		(*iter) = NULL;
+	}
+	ObjectPoolList.clear();
 
 	/*
 	for (list< ObjectPool*>::iterator iter = ObjectPoolList.begin();
@@ -48,7 +100,6 @@ int main(void)
 	{
 		ObjectPoolList = (new ObjectPool(i,0,false));
 	}
-	*/
 
 	
 
@@ -85,15 +136,13 @@ int main(void)
 
 			}
 
-
-				/*
 				if (!(*iter)->Active)
 				{
 					Array[i]->Active = true;
 					Array[i]->Value = 0;
 					break;
 				}
-			 */
+			 
 			}
 
 		}
@@ -152,22 +201,12 @@ int main(void)
 
 	 C#은 쓰레기들이 모이는 가비지 라는 저장공간이 가득차면 일괄적으로 삭제를 하는데
 	 생성과 삭제는 메모리에 가장 큰 부하를 가져다주기 때문에 게임이 멈출수있다. 
+	*/
 
-
-
-	 */
 
 	return 0;
 }
 
-void InputKey(Objectpool* _pool)
-{
-	if (!check)
-		return;
-
-	
-
-}
 
 
 
