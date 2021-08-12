@@ -1,3 +1,6 @@
+#include "..\Prototype\Object.h"
+#include "..\Prototype\Object.h"
+#include "..\Prototype\Object.h"
 #include <iostream>
 #include <string>
 
@@ -73,7 +76,7 @@ if ((*ppInstance) != NULL)               \
 #define DESTROYSINGLETON(type) (*type::GetInstance())->DestroyInstance()
 
 
-class Object
+class _Object
 {
 public:
 	DECLARE_SINGLETON(Object)
@@ -88,6 +91,7 @@ public:
 	}
 
 public:
+	
 	Object(){}
 	~Object(){}
 };
