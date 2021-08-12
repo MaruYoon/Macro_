@@ -17,19 +17,14 @@ void InitObject(string _Key)
 	}
 
 
-
 	for (list<Object*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end();++iter)
 	{
-		ObjectList.push_back(*pObj->Clone());
+		ObjectList.push_back((*iter)->Clone());
 
-		ObjectList = pObj->Initialize();
-		ObjectList = SetIndex(iter + 1);
-
+		(*iter)->Initialize();
+		(*iter)->SetIndex(ObjectList.begin() + 1);
 	}
-
-
-
 
 }
 
@@ -39,6 +34,7 @@ int main(void)
 
 	InitObject("Object");
 
+	//출력
 	for (list<Object*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
 	{
@@ -46,13 +42,13 @@ int main(void)
 			(*iter)->Render();
 	}
 
+
+	//삭제
 	for (list<Object*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
 	{
 		if (ObjectList)
-		{
 			ObjectList.clear();
-		}
 	}
 
 
