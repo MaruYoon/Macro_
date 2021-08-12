@@ -38,7 +38,6 @@ int main(void)
 	for (list<Object*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
 	{
-		if (ObjectList)
 			(*iter)->Render();
 	}
 
@@ -47,7 +46,6 @@ int main(void)
 	for (list<Object*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
 	{
-		if (ObjectList)
 			ObjectList.clear();
 	}
 
