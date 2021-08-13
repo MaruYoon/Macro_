@@ -9,7 +9,7 @@ private:
 public:
 	void Initialize();
 	int Update();
-	void Render(int n);
+	void Render();
 public:
 	Object* Clone() { return new Object(*this); }
 	void SetIndex(int _index) { TransInfo.Index = _index; }

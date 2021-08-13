@@ -1,7 +1,7 @@
 #include "Prototype.h"
 #include "Object.h"
 
-list<Object*>ObjectList;
+list<Object*> ObjectList;
 
 void InitObject(string _Key)
 {
@@ -16,16 +16,15 @@ void InitObject(string _Key)
 		return;
 	}
 
-
-	for (list<Object*>::iterator iter = ObjectList.begin();
-		iter != ObjectList.end();++iter)
+	for (int i = 0; i < 5; ++i)
 	{
-		ObjectList.push_back((*iter)->Clone());
+		Object* pTempObj = pObj->Clone();
 
-		(*iter)->Initialize();
-		(*iter)->SetIndex(ObjectList.begin() + 1);
+		pTempObj->Initialize();
+		pTempObj->SetIndex(i + 1);
+
+		ObjectList.push_back(pTempObj);
 	}
-
 }
 
 int main(void)
@@ -38,19 +37,17 @@ int main(void)
 	for (list<Object*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
 	{
-			(*iter)->Render(1);
+		(*iter)->Render();
 	}
-
 
 	//ªË¡¶
 	for (list<Object*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
 	{
-			ObjectList.clear();
+		delete (*iter);
+		(*iter) = nullptr;
 	}
-
-
-
+	ObjectList.clear();
 
 	return 0;
 }
