@@ -92,8 +92,8 @@ public:
 
 public:
 	
-	Object(){}
-	~Object(){}
+	_Object(){}
+	~_Object(){}
 };
 
 
