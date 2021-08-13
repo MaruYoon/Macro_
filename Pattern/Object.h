@@ -2,7 +2,7 @@
 #include"../Common/Headers.h"
 
 #pragma once
-#include "../Common/Headers.h"
+#include "Headers.h"
 
 class Object
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "../Common/Headers.h"
+#include "Headers.h"
 
 class Object;
 class ObjectpoolManager
@@ -19,6 +19,14 @@ private:
 
 	//** 사용을 마친 오브젝트 리스트 (랜더링 되지 않음)
 	list<Object*> DesableList;
+
+public:
+	void Initialize();
+	void Update();
+	void Render();
+	void Release();
+	void OutPut(float _x, float _y, string _str);
+
 
 public:
 	ObjectpoolManager();
