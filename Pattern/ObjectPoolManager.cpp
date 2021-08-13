@@ -9,6 +9,7 @@ ObjectpoolManager::ObjectpoolManager()
 
 ObjectpoolManager::~ObjectpoolManager()
 {
+	Release();
 }
 
 void ObjectpoolManager::Initialize()
@@ -22,7 +23,6 @@ void ObjectpoolManager::Initialize()
 			DesableList.push_back(new Object);
 		}
 	}
-
 
 
 	//** 추가 생성된 오브젝트 하나를 선택.
