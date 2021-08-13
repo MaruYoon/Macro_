@@ -19,6 +19,7 @@ void InitObject(string _Key)
 	for (int i = 0; i < 5; ++i)
 	{
 		Object* pTempObj = pObj->Clone();
+		//push_back 을 하기 위해서는 초기화 과정을 거쳐야 함
 
 		pTempObj->Initialize();
 		pTempObj->SetIndex(i + 1);
@@ -41,12 +42,14 @@ int main(void)
 	}
 
 	//삭제
+	//포인터를 해제하는 작업과 
 	for (list<Object*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
 	{
 		delete (*iter);
 		(*iter) = nullptr;
 	}
+	//컨테이너를 비우는 작없이 같이 진행이 되어야함
 	ObjectList.clear();
 
 	return 0;
