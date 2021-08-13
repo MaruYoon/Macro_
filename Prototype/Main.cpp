@@ -38,7 +38,7 @@ int main(void)
 	for (list<Object*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
 	{
-			(*iter)->Render();
+			(*iter)->Render(1);
 	}
 
 
