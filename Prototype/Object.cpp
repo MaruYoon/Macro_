@@ -22,7 +22,7 @@ int Object::Update()
 
 void Object::Render()
 {
-	COORD Pos = { (SHORT)TransInfo.Position.x, (SHORT)TransInfo.Position.y + TransInfo.Index };
+	COORD Pos = { (SHORT)TransInfo.Position.x, SHORT(TransInfo.Position.y + TransInfo.Index) };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 	cout << TransInfo.Index << " : " << str << endl;
 

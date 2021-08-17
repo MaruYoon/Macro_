@@ -1,5 +1,7 @@
 #pragma once
-#include "Headers.h"
+//#include "Headers.h"
+#include "../Common/Headers.h"
+
 
 class Object
 {
@@ -18,6 +20,5 @@ public:
 	Object();
 	Object(const Transform& _TransInfo) : TransInfo(_TransInfo){}
 	~Object();
-
 };
 

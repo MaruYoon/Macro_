@@ -1,7 +1,4 @@
 #pragma once
-#include"../Common/Headers.h"
-
-#pragma once
 #include "Headers.h"
 
 class Object
@@ -25,6 +22,12 @@ public:
 
 		return 0;
 	}
+
+
+	Object* Clone() { return new Object(*this); }
+
+
+
 
 	void Render()
 	{

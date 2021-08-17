@@ -137,12 +137,17 @@ int main(void)
 	pObj->Output();
 	*/
 
+
+
+
+	/*
 	GETSINGLETON(Object)->Number = 10;
 	GETSINGLETON(Object)->Output();
 
 	cout << GETSINGLETON(Object)->Number << endl;
 
 	DESTROYSINGLETON(Object);
+	*/
 
 
 
